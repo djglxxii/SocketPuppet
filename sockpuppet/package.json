@@ -1,0 +1,17 @@
+{
+  "name": "sockpuppet",
+  "version": "1.0.0",
+  "description": "A retro amber-terminal TCP test client for POCT1-style XML conversations",
+  "private": true,
+  "scripts": {
+    "dev:backend": "npm run dev --prefix backend",
+    "dev:client": "npm run dev --prefix client",
+    "build:client": "npm run build --prefix client",
+    "build": "npm run build:client && npm run build --prefix backend",
+    "start": "npm run start --prefix backend",
+    "install:all": "npm install && cd backend && npm install && cd ../client && npm install"
+  },
+  "keywords": ["tcp", "poct1", "xml", "terminal", "test-utility"],
+  "author": "",
+  "license": "MIT"
+}
