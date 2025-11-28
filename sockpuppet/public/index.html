@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SOCKPUPPET - TCP Terminal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=VT323&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="app-root">
+    <!-- Header / Title Bar -->
+    <header class="title-bar">
+      <h1 class="title">
+        <span class="title-icon">◈</span>
+        SOCKPUPPET
+        <span class="title-subtitle">TCP TERMINAL v1.0</span>
+      </h1>
+    </header>
+
+    <!-- Connection Bar -->
+    <section class="panel connection-bar">
+      <div class="panel-title">CONNECTION</div>
+      <div class="connection-controls">
+        <div class="input-group">
+          <label for="host-input">HOST</label>
+          <input type="text" id="host-input" placeholder="127.0.0.1" value="127.0.0.1">
+        </div>
+        <div class="input-group">
+          <label for="port-input">PORT</label>
+          <input type="number" id="port-input" placeholder="4059" value="4059" min="1" max="65535">
+        </div>
+        <div class="button-group">
+          <button id="connect-btn" type="button">CONNECT</button>
+          <button id="disconnect-btn" type="button" disabled>DISCONNECT</button>
+        </div>
+        <div class="status-display">
+          <span class="status-indicator" id="status-indicator"></span>
+          <span class="status-text" id="status-text">DISCONNECTED</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+      <!-- Left Panel: Conversation Input -->
+      <section class="panel conversation-panel">
+        <div class="panel-title">XML CONVERSATION</div>
+        <div class="conversation-content">
+          <textarea 
+            id="conversation-input" 
+            placeholder="Paste your &lt;Session&gt;...&lt;/Session&gt; XML here..."
+            spellcheck="false"
+          ></textarea>
+          <div class="parse-controls">
+            <button id="parse-btn" type="button">PARSE MESSAGES</button>
+            <button id="clear-btn" type="button">CLEAR</button>
+          </div>
+          <div id="parse-error" class="parse-error"></div>
+        </div>
+      </section>
+
+      <!-- Right Panel: Parsed Messages -->
+      <section class="panel messages-panel">
+        <div class="panel-title">
+          PARSED MESSAGES
+          <span class="message-count" id="message-count">(0)</span>
+        </div>
+        <div class="messages-content">
+          <table id="messages-table">
+            <thead>
+              <tr>
+                <th class="col-index">#</th>
+                <th class="col-tag">TAG</th>
+                <th class="col-type">TYPE</th>
+                <th class="col-id">CTRL ID</th>
+                <th class="col-preview">PREVIEW</th>
+                <th class="col-action">ACTION</th>
+              </tr>
+            </thead>
+            <tbody id="messages-body">
+              <tr class="empty-row">
+                <td colspan="6">No messages parsed. Paste XML and click PARSE MESSAGES.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="send-all-controls">
+          <button id="send-all-btn" type="button" disabled>SEND ALL SEQUENTIALLY</button>
+        </div>
+      </section>
+    </main>
+
+    <!-- Log View -->
+    <section class="panel log-panel">
+      <div class="panel-header">
+        <div class="panel-title">TRANSMISSION LOG</div>
+        <button id="clear-log-btn" type="button" class="small-btn">CLEAR LOG</button>
+      </div>
+      <div id="log" class="log-container"></div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <span>━━━ POCT1-A XML TCP TEST UTILITY ━━━</span>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
